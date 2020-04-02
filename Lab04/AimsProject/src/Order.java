@@ -3,15 +3,49 @@ public class Order {
 	
 	private int qtyOrdered;
 	public static final int  MAX_NUMBERS_ORDERED = 10;
-	private DigitalVideoDisc orderList[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
+	private DigitalVideoDisc orderList[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED+1];
+	private MyDate dateOrder;
+	public static int nbOrder;
+	public static int MAX_LIMITTED_ORDER = 5;
 	
 	public Order() {
 		this.qtyOrdered = 0;
+		this.nbOrder++;
+	}
+	public Order(MyDate date) {
+		this.qtyOrdered = 0;
+		this.nbOrder++;
+		this.dateOrder = date;
+	}
+	
+	public static Order createOrder() {
+		if(Order.nbOrder<MAX_LIMITTED_ORDER) {
+			return new Order();
+		}
+		else {
+			System.out.println("nOrders full!");
+			return null;
+		}
+	}
+	public static Order createOrder(MyDate date) {
+		if(Order.nbOrder<MAX_LIMITTED_ORDER) {
+			return new Order(date);
+		}
+		else {
+			System.out.println("nOrders full!");
+			return null;
+		}
 	}
 
 	public int getQtyOrdered() {
 		return this.qtyOrdered;
 	}	
+	public MyDate getDateOrder() {
+		return this.dateOrder;
+	}
+	public void setDateOrder(MyDate date) {
+		this.dateOrder=date;
+	}
 	
 	public void addDVD(DigitalVideoDisc DVD) {
 		if (this.qtyOrdered <MAX_NUMBERS_ORDERED) {
@@ -84,6 +118,13 @@ public class Order {
 			result+=orderList[i].getCost();
 		}
 		return result;
+	}
+	public void printOrder() {
+		System.out.println(this.dateOrder.getStringDate());
+		for(int i=1; i<=qtyOrdered; i++) {
+			System.out.println(i + ". DVD - " + orderList[i].getTitle() + " - " + orderList[i].getCategory() + " - " + orderList[i].getDirector() + " - " + orderList[i].getLength() + " - " + orderList[i].getCost() + "$");
+		}
+		System.out.println(this.totalCost());
 	}
 	
 

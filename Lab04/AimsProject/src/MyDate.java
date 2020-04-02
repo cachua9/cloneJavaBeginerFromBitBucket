@@ -57,6 +57,9 @@ public class MyDate {
 			this.year = year;
 			this.date=Integer.toString(year)+"-"+Integer.toString(month)+"-"+Integer.toString(day);
 		}
+		public String getStringDate(){
+			return(this.date);
+		}
 		
 		public void accept(String date) {
 			String out[] = date.split("-");
