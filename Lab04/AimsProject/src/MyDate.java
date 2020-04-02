@@ -99,6 +99,10 @@ public class MyDate {
 					output[i]=this.month+"";
 					if(this.month<10) output[i]="0"+output[i];
 				}
+				if(output[i].compareTo("mm")==0) {
+					output[i]=this.month+"";
+					if(this.month<10) output[i]="0"+output[i];
+				}
 				if(output[i].compareTo("MMM")==0) {
 					output[i]=array[this.month];
 				}

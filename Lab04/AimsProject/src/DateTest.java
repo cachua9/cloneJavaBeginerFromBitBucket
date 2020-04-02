@@ -14,6 +14,7 @@ public class DateTest {
 		today.setMonth(13);
 		
 		today.printform("dd-MMM-yyyy");
+		today.printform("mm-dd-yyyy");
 		
 		System.out.println(MyDate.dateUtils(today, today));
 		System.out.println(MyDate.dateUtils(yesterday, today));
