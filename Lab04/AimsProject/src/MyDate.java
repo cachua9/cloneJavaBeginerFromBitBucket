@@ -74,7 +74,67 @@ public class MyDate {
 			
 			
 		}
+		public String strDate(String formsString) {
+			String[] array = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+			String c = "-";
+			if (formsString.indexOf("-")!=-1) c="-";
+			if (formsString.indexOf("/")!=-1) c="/";
+			if (formsString.indexOf(" ")!=-1) c=" ";
+			String[] output = formsString.split(c);
+			for(int i=0; i<output.length; i++) {
+				if(output[i].compareTo("d")==0) {
+					output[i]=this.day+"";
+				}
+				if(output[i].compareTo("dd")==0) {
+					output[i]=this.day+"";
+					if(this.day<10) output[i]="0"+output[i];
+				}
+				if(output[i].compareTo("yyyy")==0) {
+					output[i]=this.year+"";
+				}
+				if(output[i].compareTo("M")==0) {
+					output[i]=this.month+"";
+				}
+				if(output[i].compareTo("MM")==0) {
+					output[i]=this.month+"";
+					if(this.month<10) output[i]="0"+output[i];
+				}
+				if(output[i].compareTo("MMM")==0) {
+					output[i]=array[this.month];
+				}
+			}
+			String strDate = output[0]+c+output[1]+c+output[2];
+			return strDate;
+		}
 		public void print() {
-			System.out.println(this.date);
+			String dateString = strDate("MMM dd yyyy");
+			String[] output = dateString.split(" ");
+			String afterDay="th";
+			if(this.day == 1 || this.day == 21) {
+				afterDay="st";
+			}
+			if(this.day == 2 || this.day == 22) {
+				afterDay="nd";
+			}
+			if(this.day == 3 || this.day == 23) {
+				afterDay="rd";
+			}
+			System.out.println(output[0]+" "+output[1]+afterDay+" "+output[2]);
+		}
+		public void printform(String formString) {
+			System.out.println(strDate(formString));
+		}
+		public static int dateUtils(MyDate x, MyDate y) {
+			if(x.getYear()<y.getYear()) return -1;
+			else if(x.getYear()>y.getYear()) return 1;
+			else {
+				if(x.getMonth()<y.getMonth()) return -1;
+				else if(x.getMonth()>y.getMonth()) return 1;
+				else {
+					if(x.getDay()<y.getDay()) return -1;
+					else if(x.getDay()>y.getDay()) return 1;
+				}
+			}
+			return 0;
 		}
 }
