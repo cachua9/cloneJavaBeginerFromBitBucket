@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import hust.soict.hedspi.aims.media.Book;
+import hust.soict.hedspi.aims.media.CompactDisc;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.Track;
 import hust.soict.hedspi.aims.order.Order;
 
 public class Aims {
@@ -65,9 +67,15 @@ public class Aims {
 		System.out.println("nbOrder: " + Order.nbOrder);
 		
 		Order od6 = Order.createOrder(today);*/
+		
+		MemoryDaemon memoryDaemon = new MemoryDaemon();
+		Thread thread = new Thread(memoryDaemon);
+		thread.setDaemon(true);
+		thread.start();
+		
 		while(true) {
 			showMenu();
-		}
+		}		
 		
 	}
 	
@@ -79,7 +87,7 @@ public class Aims {
 		System.out.println("3.Delete item by id");
 		System.out.println("4.Display the items list of order");
 		System.out.println("0.Exit");
-		System.out.println("Please choose a number: 0-1-2-3-4");		
+		System.out.print("Please choose a number: 0-1-2-3-4: ");		
 		String index = keyboard.nextLine();
 		switch (index) {
 		case "0":
@@ -120,17 +128,33 @@ public class Aims {
 			System.out.println("Please create order!");
 			return;
 		}
+		String ynInput;
 		showOrderList();
 		System.out.print("Add item to order(id): ");
 		try {
 			int idOrder = Integer.valueOf(keyboard.nextLine());
-			System.out.print("Dvd or book? 1/2: ");
+			System.out.print("Dvd or cd or book ? 1/2/3: ");
 			int typeItem = Integer.valueOf(keyboard.nextLine());
 			System.out.println("--------------------------------");
 			if(typeItem == 1) {
-				orderList.get(idOrder).addMedia(inputDVD());
+				DigitalVideoDisc dvd = inputDVD();
+				orderList.get(idOrder).addMedia(dvd);
+				System.out.print("Do you want play it ? y/n: ");
+				ynInput = keyboard.nextLine();
+				if(ynInput.equalsIgnoreCase("y")) {
+					dvd.play();
+				}
 			}
 			else if(typeItem == 2){
+				CompactDisc cd = inputCD();
+				orderList.get(idOrder).addMedia(cd);
+				System.out.print("Do you want play it ? y/n: ");
+				ynInput = keyboard.nextLine();
+				if(ynInput.equalsIgnoreCase("y")) {
+					cd.play();
+				}
+			}
+			else if(typeItem == 3){
 				orderList.get(idOrder).addMedia(inputBook());
 			}
 		}
@@ -192,11 +216,36 @@ public class Aims {
 		String category = keyboard.nextLine();
 		System.out.print("DVD dirertor?: ");
 		String dirertor = keyboard.nextLine();
-		System.out.println("DVD Length?:");
+		System.out.print("DVD Length?: ");
 		int length = Integer.valueOf(keyboard.nextLine());
 		System.out.print("DVD cost?: ");
 		Float cost = Float.valueOf(keyboard.nextLine());
 		DigitalVideoDisc newDVD =  new DigitalVideoDisc(title,category,dirertor,length,cost);
 		return newDVD;
+	}
+	private static CompactDisc inputCD() {
+		System.out.print("CD title?: ");
+		String title = keyboard.nextLine();
+		System.out.print("CD category?: ");
+		String category = keyboard.nextLine();
+		System.out.print("CD dirertor?: ");
+		String dirertor = keyboard.nextLine();
+		System.out.print("CD Cost?: ");
+		Float cost = Float.valueOf(keyboard.nextLine());
+		CompactDisc newCD = new CompactDisc(title, category, dirertor, cost);
+		String ynInput;
+		int length;
+		while(true) {
+			System.out.print("Add a track? y/n:");
+			ynInput = keyboard.nextLine();
+			if(ynInput.equalsIgnoreCase("n")) break; 
+			System.out.print("Track title?: ");
+			title = keyboard.nextLine();
+			System.out.print("Track Length?: ");
+			length = Integer.valueOf(keyboard.nextLine());
+			Track newTrack = new Track(title, length);
+			newCD.addTrack(newTrack);
+		}
+		return newCD;
 	}
 }

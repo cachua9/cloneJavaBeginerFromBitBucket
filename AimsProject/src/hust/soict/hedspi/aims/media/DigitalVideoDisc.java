@@ -1,13 +1,9 @@
 package hust.soict.hedspi.aims.media;
 
-public class DigitalVideoDisc extends Media{
+public class DigitalVideoDisc extends Disc implements Playable{
 	
-	private String director;
-	private int length;	
 	public DigitalVideoDisc(DigitalVideoDisc dvd) {
-		super(dvd);
-		this.director = dvd.director;
-		this.length = dvd.length;		
+		super(dvd);		
 	}	
 	public DigitalVideoDisc(String title) {
 		super(title);
@@ -15,28 +11,19 @@ public class DigitalVideoDisc extends Media{
 	public DigitalVideoDisc(String title, String category) {
 		super(title, category);
 	}
-	public DigitalVideoDisc(String title, String category, String dirertor) {
-		super(title, category);
-		this.director=dirertor;
+	public DigitalVideoDisc(String title, String category, String director) {
+		super(title, category, director);
+	}
+	public DigitalVideoDisc(String title, String category, float cost) {
+		super(title, category, cost);
+	}
+	public DigitalVideoDisc(String title, String category, String dirertor, float cost) {
+		super(title, category, dirertor, cost);
 	}
 	public DigitalVideoDisc(String title, String category, String dirertor, int length, float cost) {
-		this(title,category,dirertor);
-		this.length=length;
-		this.cost=cost;
+		super(title, category, dirertor, length, cost);
 	}
-	
-	public String getDirector() {
-		return director;
-	}
-	public void setDirector(String director) {
-		this.director = director;
-	}
-	public int getLength() {
-		return length;
-	}
-	public void setLength(int length) {
-		this.length = length;
-	}
+		
 	public void swap(DigitalVideoDisc dvd) {
 		DigitalVideoDisc tmp = new DigitalVideoDisc(this);
 		this.title = dvd.title;
@@ -61,5 +48,10 @@ public class DigitalVideoDisc extends Media{
 			}
 		}
 		return flag;
+	}
+	@Override
+	public void play() {
+		System.out.println("Playing DVD: " + this.getTitle());
+		System.out.println("DVD length: " + this.getLength());
 	}
 }

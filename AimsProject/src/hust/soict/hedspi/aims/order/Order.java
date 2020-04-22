@@ -2,6 +2,7 @@ package hust.soict.hedspi.aims.order;
 import java.util.ArrayList;
 
 import hust.soict.hedspi.aims.media.Book;
+import hust.soict.hedspi.aims.media.CompactDisc;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.utils.MyDate;
@@ -133,6 +134,9 @@ public class Order {
 			}
 			else if(media instanceof Book) {
 				System.out.println("ID: "+media.getID()+" | Book - Title: "+media.getTitle()+", Cost: "+media.getCost());
+			}
+			else if(media instanceof CompactDisc) {
+				System.out.println("ID: "+media.getID()+" | CD - Title: "+media.getTitle()+", Cost: "+media.getCost());
 			}
 			
 		}

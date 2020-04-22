@@ -1,0 +1,84 @@
+package hust.soict.hedspi.aims.media;
+
+import java.util.ArrayList;
+
+public class CompactDisc extends Disc implements Playable{
+
+	private String artist;
+	private ArrayList<Track> tracks = new ArrayList<Track>();
+	
+	public CompactDisc(CompactDisc disc) {
+		super(disc);
+	}
+	public CompactDisc(String title) {
+		super(title);
+	}
+	public CompactDisc(String title, String category) {
+		super(title, category);
+	}
+	public CompactDisc(String title, String category, String director) {
+		super(title, category, director);
+	}
+	public CompactDisc(String title, String category, float cost) {
+		super(title, category, cost);
+	}
+	public CompactDisc(String title, String category, String dirertor, float cost) {
+		super(title, category, dirertor, cost);
+	}
+	public CompactDisc(String title, String category, String dirertor, int length, float cost) {
+		super(title, category, dirertor, length, cost);
+	}
+	public CompactDisc(String title, String category, String dirertor, int length, float cost, String artist) {
+		this(title, category, dirertor, length, cost);
+		this.artist = artist;
+	}
+
+	public String getArtist() {
+		return artist;
+	}	
+	
+	public void addTrack(Track track) {
+		if(tracks.size() !=	0) {		
+			for (Track trk : tracks) {
+				if(trk.equals(track)) {
+					System.out.println("Track is exist!");
+					return;
+				}
+			}
+		}
+		tracks.add(track);
+		System.out.println("Input track success!");
+	}
+	public void removeTrack(Track track) {
+		if(tracks.size()==0) {
+			System.out.println("Tracks is empty!");
+			return;
+		}
+		for (Track trk : tracks) {
+			if(trk.equals(track)) {
+				tracks.remove(track);
+				System.out.println("Remove track success!");
+				return;
+			}
+		}
+	}
+	public int getLength() {
+		int length = 0;
+		for (Track track : tracks) {
+			length += track.getLength();
+		}
+		return length;
+	}
+	@Override
+	public void play() {
+		if(tracks.size()==0) {
+			System.out.println("Tracks is empty!");
+			return;
+		}
+		for (Track track : tracks) {
+			track.play();
+		}
+		
+	}
+
+}
