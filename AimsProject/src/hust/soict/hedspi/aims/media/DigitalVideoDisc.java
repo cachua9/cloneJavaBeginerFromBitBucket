@@ -57,11 +57,11 @@ public class DigitalVideoDisc extends Disc implements Playable, Comparable{
 	@Override
 	
 	public int compareTo(Object o) {
-		return this.getTitle().compareTo(((DigitalVideoDisc)o).getTitle());
-//		if(this.getCost() > ((DigitalVideoDisc)o).getCost())
-//			return 1;
-//		if(this.getCost() < ((DigitalVideoDisc)o).getCost())
-//			return -1;
-//		return 0;
+		//return this.getTitle().compareTo(((DigitalVideoDisc)o).getTitle());
+		if(this.getCost() > ((DigitalVideoDisc)o).getCost())
+			return 1;
+		if(this.getCost() < ((DigitalVideoDisc)o).getCost())
+			return -1;
+		return 0;
 	}
 }
