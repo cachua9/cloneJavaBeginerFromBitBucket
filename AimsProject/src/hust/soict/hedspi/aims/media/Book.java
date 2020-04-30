@@ -1,11 +1,20 @@
 package hust.soict.hedspi.aims.media;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Book extends Media {
 	
 	private List<String> authors = new ArrayList<String>();
+	private String content;
+	private List<String> contentTokens;
+	private Map<String, Integer> wordFrequency = new HashMap<String, Integer>();
+	
 	
 	public Book(String title) {
 		super(title);
@@ -28,8 +37,28 @@ public class Book extends Media {
 
 	public void setAuthors(List<String> authors) {
 		this.authors = authors;
+	}	
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+		processContent();
 	}
 	
+	public void processContent() {
+		this.contentTokens = Arrays.asList(this.content.split("[ .]+"));
+		Collections.sort(this.contentTokens);
+		for (String token : contentTokens) {
+			String word = token.toLowerCase();
+			if (wordFrequency.containsKey(word)) {
+				int count = wordFrequency.get(word); 
+			    wordFrequency.put(word, count + 1);
+			} else {
+			    wordFrequency.put(word, 1);
+			}
+		}
+	}
 	public void addAuthor(String authorName) {
 		for (String str : authors) {
 			if(str.equals(authorName)) return;
@@ -43,5 +72,15 @@ public class Book extends Media {
 				break;
 			}
 		}
+	}
+	@Override
+	public String toString() {
+		TreeMap<String, Integer> newTreeMap = new TreeMap<String, Integer>();
+		newTreeMap.putAll(this.wordFrequency);
+		String str = "Book: " + this.getTitle() + "\nCategory: " + this.getCategory() + "\nCost: " + this.getCost() + "\nContent length: " + this.contentTokens.size() + "\nToken list:\n";
+		for (Map.Entry<String, Integer> entry : newTreeMap.entrySet()) {
+			str += " " + entry.getKey() + " : " + entry.getValue() + "\n";
+		}
+		return str;
 	}
 }
