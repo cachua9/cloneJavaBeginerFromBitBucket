@@ -3,7 +3,7 @@ package hust.soict.hedspi.aims.media;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book extends Media implements Comparable<Book> {
+public class Book extends Media {
 	
 	private List<String> authors = new ArrayList<String>();
 	
@@ -43,9 +43,5 @@ public class Book extends Media implements Comparable<Book> {
 				break;
 			}
 		}
-	}
-	@Override
-	public int compareTo(Book o) {
-		return this.getTitle().compareTo(o.getTitle());
 	}
 }
