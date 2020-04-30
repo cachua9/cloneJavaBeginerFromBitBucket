@@ -58,6 +58,13 @@ public abstract class Media {
 		return id;
 	}
 	
-	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null)
+			return false;
+		if(this.id == ((Media)obj).getID())
+			return true;
+		return false;
+	}
 
 }

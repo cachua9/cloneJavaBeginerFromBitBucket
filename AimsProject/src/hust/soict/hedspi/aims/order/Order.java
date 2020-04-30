@@ -64,6 +64,12 @@ public class Order {
 	
 	public void addMedia(Media media) {
 		if(itemOrdered.size()<MAX_NUMBERS_ORDERED) {
+			for (Media tmp : itemOrdered) {
+				if(tmp.equals(media)) {
+					System.out.println("Media "+media.getTitle()+" is exist!");
+					return;
+				}
+			}
 			itemOrdered.add(media);
 			System.out.println("Add media "+media.getTitle()+": Success!");		
 		}
@@ -77,7 +83,7 @@ public class Order {
 			return;
 		}
 		for (Media tmp : itemOrdered) {
-			if(tmp == media) {
+			if(tmp.equals(media)) {
 				itemOrdered.remove(tmp);
 				System.out.println("Remove Media "+media.getTitle()+": Success!");
 				return;
