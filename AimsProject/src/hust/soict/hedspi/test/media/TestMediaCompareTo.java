@@ -8,20 +8,22 @@ import java.util.List;
 
 import hust.soict.hedspi.aims.media.CompactDisc;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.Track;
 
 public class TestMediaCompareTo {
 	public static void main(String[] args) {
-		Collection collection = new ArrayList();
+		//Collection collection = new ArrayList();
+		List<DigitalVideoDisc> dvdList = new ArrayList<DigitalVideoDisc>();
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("Iron Man", "Action", "Marval", 90, 20.4f);
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Captain America", "Action", "Marval", 87, 18.45f);
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Hulk", "Action", "Marval", 98, 16.8f);
 		
-		collection.add(dvd2);
-		collection.add(dvd1);
-		collection.add(dvd3);
+		dvdList.add(dvd2);
+		dvdList.add(dvd1);
+		dvdList.add(dvd3);
 		
-		Iterator iterator = collection.iterator();
+		Iterator iterator = dvdList.iterator();
 		
 		System.out.println("-------------------------------------");
 		System.out.println("The DVDs currently in the order are: ");
@@ -30,9 +32,9 @@ public class TestMediaCompareTo {
 			System.out.println(((DigitalVideoDisc)iterator.next()).getTitle());
 		}
 		
-		Collections.sort((List)collection);
+		Collections.sort(dvdList);
 		
-		iterator = collection.iterator();
+		iterator = dvdList.iterator();
 		
 		System.out.println("-------------------------------------");
 		System.out.println("The DVDs in sorted order are: ");
@@ -43,7 +45,8 @@ public class TestMediaCompareTo {
 		
 		System.out.println("-------------------------------------");
 		
-		Collection collection2 = new ArrayList();
+		//Collection collection2 = new ArrayList();
+		List<CompactDisc> cdList = new ArrayList<CompactDisc>();
 		Track track1 = new Track("Baby Shark", 4);
 		Track track2 = new Track("300 bai hat thieu nhi", 3);
 		Track track3 = new Track("Bella chaos", 5);
@@ -71,11 +74,11 @@ public class TestMediaCompareTo {
 		cd3.addTrack(track7);
 		cd3.addTrack(track9);
 		
-		collection2.add(cd2);
-		collection2.add(cd1);
-		collection2.add(cd3);
+		cdList.add(cd2);
+		cdList.add(cd1);
+		cdList.add(cd3);
 		
-		iterator = collection2.iterator();
+		iterator = cdList.iterator();
 		
 		System.out.println("-------------------------------------");
 		System.out.println("The CDs currently in the order are: ");
@@ -84,9 +87,9 @@ public class TestMediaCompareTo {
 			System.out.println(((CompactDisc)iterator.next()).getTitle());
 		}
 		
-		Collections.sort((List)collection2);
+		Collections.sort(cdList);
 		
-		iterator = collection2.iterator();
+		iterator = cdList.iterator();
 		
 		System.out.println("-------------------------------------");
 		System.out.println("The CDs in sorted order are: ");

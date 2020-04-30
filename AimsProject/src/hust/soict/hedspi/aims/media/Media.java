@@ -65,6 +65,5 @@ public abstract class Media {
 		if(this.id == ((Media)obj).getID())
 			return true;
 		return false;
-	}
-
+	}	
 }

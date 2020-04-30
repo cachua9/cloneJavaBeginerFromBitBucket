@@ -1,6 +1,6 @@
 package hust.soict.hedspi.aims.media;
 
-public class Track implements Playable, Comparable{
+public class Track implements Playable, Comparable<Track>{
 
 		private String title;
 		private int length;		
@@ -32,8 +32,8 @@ public class Track implements Playable, Comparable{
 			return false;
 		}
 		@Override
-		public int compareTo(Object o) {
-			return this.getTitle().compareTo(((Track)o).getTitle());
+		public int compareTo(Track o) {
+			return this.getTitle().compareTo(o.getTitle());
 		}
 		
 }
