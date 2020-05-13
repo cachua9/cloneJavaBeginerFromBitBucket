@@ -1,5 +1,7 @@
 package hust.soict.hedspi.aims.media;
 
+import javax.swing.JOptionPane;
+
 public class DigitalVideoDisc extends Disc implements Playable {
 	
 	public DigitalVideoDisc(DigitalVideoDisc dvd) {
@@ -53,6 +55,7 @@ public class DigitalVideoDisc extends Disc implements Playable {
 	public void play() {
 		System.out.println("Playing DVD: " + this.getTitle());
 		System.out.println("DVD length: " + this.getLength());
+		JOptionPane.showMessageDialog(null, "Playing DVD: " + this.getTitle() + "\nDVD length: " + this.getLength());
 	}
 	@Override	
 	public int compareTo(Media o) {

@@ -1,6 +1,8 @@
 package hust.soict.hedspi.aims.order;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import hust.soict.hedspi.aims.media.Book;
 import hust.soict.hedspi.aims.media.CompactDisc;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
@@ -31,10 +33,12 @@ public class Order {
 	public static Order createOrder() {
 		if(Order.nbOrder<MAX_LIMITTED_ORDER) {
 			System.out.println("Create new order success!");
+			JOptionPane.showMessageDialog(null, "Create new order success!");
 			return new Order();
 		}
 		else {
 			System.out.println("nOrders full!");
+			JOptionPane.showMessageDialog(null, "nOrders full!");
 			return null;
 		}
 	}
@@ -67,14 +71,17 @@ public class Order {
 			for (Media tmp : itemOrdered) {
 				if(tmp.equals(media)) {
 					System.out.println("Media "+media.getTitle()+" is exist!");
+					JOptionPane.showMessageDialog(null, "Media "+media.getTitle()+" is exist!");
 					return;
 				}
 			}
 			itemOrdered.add(media);
-			System.out.println("Add media "+media.getTitle()+": Success!");		
+			System.out.println("Add media "+media.getTitle()+": Success!");
+			JOptionPane.showMessageDialog(null, "Add media "+media.getTitle()+": Success!");
 		}
 		else {
 			System.out.println("Order full");
+			JOptionPane.showMessageDialog(null, "Order full");
 		}
 	}
 	public void removeMedia(Media media) {
@@ -94,16 +101,19 @@ public class Order {
 	public void removeMediaByID(int id) {
 		if(itemOrdered.size() == 0) {
 			System.out.println("Empty order");
+			JOptionPane.showMessageDialog(null, "Empty order");
 			return;
 		}
 		for (Media media : itemOrdered) {
 			if(media.getID() == id) {
 				itemOrdered.remove(media);
 				System.out.println("Remove Media id "+id+": Success!");
+				JOptionPane.showMessageDialog(null, "Remove Media id "+id+": Success!");
 				return;
 			}
 		}
 		System.out.println("Media id "+id+" not found!");		
+		JOptionPane.showMessageDialog(null, "Media id "+id+" not found!");
 	}
 	
 	/*public void addDVD(DigitalVideoDisc... dvdList) {
@@ -146,6 +156,9 @@ public class Order {
 			}
 			
 		}
+	}
+	public ArrayList<Media> getItemOrdered() {
+		return itemOrdered;
 	}
 
 }

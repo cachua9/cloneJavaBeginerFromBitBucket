@@ -1,5 +1,7 @@
 package hust.soict.hedspi.aims.media;
 
+import javax.swing.JOptionPane;
+
 public class Track implements Playable, Comparable<Track>{
 
 		private String title;
@@ -23,6 +25,7 @@ public class Track implements Playable, Comparable<Track>{
 		public void play() {
 			System.out.println("Playing track: " + this.getTitle());
 			System.out.println("Track length: " + this.getLength());
+			JOptionPane.showMessageDialog(null, "Playing Track: " + this.getTitle() + "\nTrack length: " + this.getLength());
 		}
 		public boolean equals(Object obj) {
 			if(obj == null)

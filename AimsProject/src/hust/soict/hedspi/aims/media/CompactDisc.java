@@ -2,6 +2,8 @@ package hust.soict.hedspi.aims.media;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class CompactDisc extends Disc implements Playable {
 
 	private String artist;
@@ -42,12 +44,14 @@ public class CompactDisc extends Disc implements Playable {
 			for (Track trk : tracks) {
 				if(trk.equals(track)) {
 					System.out.println("Track is exist!");
+					JOptionPane.showMessageDialog(null, "Track is exist!");
 					return;
 				}
 			}
 		}
 		tracks.add(track);
 		System.out.println("Input track success!");
+		JOptionPane.showMessageDialog(null, "Input track success!");
 	}
 	public void removeTrack(Track track) {
 		if(tracks.size()==0) {
@@ -73,6 +77,7 @@ public class CompactDisc extends Disc implements Playable {
 	public void play() {
 		if(tracks.size()==0) {
 			System.out.println("Tracks is empty!");
+			JOptionPane.showMessageDialog(null, "Tracks is empty!");
 			return;
 		}
 		for (Track track : tracks) {
