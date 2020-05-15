@@ -35,7 +35,7 @@ public class AddDVD extends AddMedia{
 		tfDirector.setBounds(130, 100, 100, 25);
 		cp.add(tfDirector);
 		
-		JLabel lbLength = new JLabel("Director:");
+		JLabel lbLength = new JLabel("Length:");
 		lbLength.setBounds(10, 130, 110, 25);
 		cp.add(lbLength);
 		tfLength = new JTextField();
