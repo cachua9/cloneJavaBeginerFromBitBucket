@@ -2,6 +2,8 @@ package hust.soict.hedspi.aims.media;
 
 import javax.swing.JOptionPane;
 
+import hust.soict.hedspi.aims.PlayerException;
+
 public class Track implements Playable, Comparable<Track>{
 
 		private String title;
@@ -22,10 +24,16 @@ public class Track implements Playable, Comparable<Track>{
 			return length;
 		}
 		@Override
-		public void play() {
-			System.out.println("Playing track: " + this.getTitle());
-			System.out.println("Track length: " + this.getLength());
-			JOptionPane.showMessageDialog(null, "Playing Track: " + this.getTitle() + "\nTrack length: " + this.getLength());
+		public void play() throws PlayerException {
+			if(this.length > 0) {
+				System.out.println("Playing track: " + this.getTitle());
+				System.out.println("Track length: " + this.getLength());
+				JOptionPane.showMessageDialog(null, "Playing Track: " + this.getTitle() + "\nTrack length: " + this.getLength());
+			}
+			else {
+				throw new PlayerException("Track length is non-positive");
+			}
+			
 		}
 		public boolean equals(Object obj) {
 			if(obj == null)
