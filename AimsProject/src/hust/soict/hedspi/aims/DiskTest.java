@@ -30,7 +30,7 @@ public class DiskTest {
 		
 		System.out.print("Total cost is: ");
 		System.out.println(anOrder.totalCost());
-		anOrder.getALuckyItem();
+		//anOrder.getALuckyItem();
 		System.out.print("Total cost is: ");
 		System.out.println(anOrder.totalCost());
 		

@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import hust.soict.hedspi.aims.PlayerException;
 import hust.soict.hedspi.aims.media.CompactDisc;
 import hust.soict.hedspi.aims.media.Track;
 import hust.soict.hedspi.aims.order.Order;
@@ -48,8 +49,13 @@ public class AddCD extends AddMedia {
 		else {
 			indexSelect = JOptionPane.showOptionDialog(null, "Do you want play CD?", "", JOptionPane.DEFAULT_OPTION, JOptionPane.DEFAULT_OPTION, null, new String[] {"Yes", "No"}, null);
 			if (indexSelect == 0) {
-				newCD.play();
-			}	
+				try {
+					newCD.play();
+				} catch (PlayerException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage());
+					//e.printStackTrace();
+				}
+			}
 		}
 	}
 

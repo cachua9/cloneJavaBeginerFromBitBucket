@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import hust.soict.hedspi.aims.PlayerException;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.order.Order;
 
@@ -51,7 +52,12 @@ public class AddDVD extends AddMedia{
 		order.addMedia(newDVD);
 		int indexSelect = JOptionPane.showOptionDialog(null, "Do you want play DVD?", "", JOptionPane.DEFAULT_OPTION, JOptionPane.DEFAULT_OPTION, null, new String[] {"Yes", "No"}, null);
 		if (indexSelect == 0) {
-			newDVD.play();
+			try {
+				newDVD.play();
+			} catch (PlayerException e) {
+				JOptionPane.showMessageDialog(null, e.getMessage());
+				//e.printStackTrace();
+			}			
 		}		
 	}
 

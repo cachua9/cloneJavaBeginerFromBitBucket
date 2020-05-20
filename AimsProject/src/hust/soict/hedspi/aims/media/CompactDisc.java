@@ -1,8 +1,11 @@
 package hust.soict.hedspi.aims.media;
 
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+
+import hust.soict.hedspi.aims.PlayerException;
 
 public class CompactDisc extends Disc implements Playable {
 
@@ -74,15 +77,25 @@ public class CompactDisc extends Disc implements Playable {
 		return length;
 	}
 	@Override
-	public void play() {
+	public void play() throws PlayerException{
 		if(tracks.size()==0) {
 			System.out.println("Tracks is empty!");
 			JOptionPane.showMessageDialog(null, "Tracks is empty!");
 			return;
 		}
-		for (Track track : tracks) {
-			track.play();
+		if(this.getLength() > 0) {
+			for (Track track : tracks) {
+				try {
+					track.play();
+				} catch (PlayerException e) {
+					throw e;
+				}
+			}
 		}
+		else {
+			throw new PlayerException("CD length is non-positive");
+		}
+		
 		
 	}
 	@Override
